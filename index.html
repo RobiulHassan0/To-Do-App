@@ -69,17 +69,22 @@
         }
         .tasks{
             width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .task-item{
-            list-style: none;
+        .tasks-p{
             padding: 10px; 
             background: rgb(207, 202, 202);
             border-radius: 50px;
             margin: 10px 0;
-            display: flex;
-            justify-content: space-around;
         }
-        .task-item button{
+        #btn-container{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .btn-li{
             padding: 8px 15px;
             outline: none;
             border: 1px solid salmon;
@@ -95,10 +100,9 @@
                 <input id="input-box" type="text" placeholder="Add your Task">
                 <button id="btn-main" type="button" class="btn-main">Add</button>
             </div>
-            <div class="tasks">
-                <ul id="task-list">
-                </ul>
-                <div class="btn-li">
+            <div id="task-list" class="tasks">
+        
+                <div id="btn-container">
 
                 </div>
             </div>
@@ -109,21 +113,30 @@
         document.getElementById('btn-main')
             .addEventListener('click', function(){
                 const input = document.getElementById('input-box').value.trim();
-                const li = document.createElement('li');
-                li.textContent = input;
-                li.classList.add('task-item');
+                const p = document.createElement('p');
+                p.textContent = input;
+                p.classList.add('tasks-p');
 
-                const button = document.getElementById('btn-li')
+                // const buttons = document.getElementById('btn-container')
+                // buttons.innerHTML = `
+                // <button class="Edit"></button>
+                // <button class="Remove"></button>
+
+                const buttons = document.getElementById('btn-container')
+
                 const editBtn = document.createElement('button');
                 editBtn.innerText = 'Edit';
-                li.appendChild(editBtn)
+                editBtn.classList.add('btn-li')
+                buttons.appendChild(editBtn)
 
                 const deleteBtn = document.createElement('button');
                 deleteBtn.innerText = 'Remove';
-                li.appendChild(deleteBtn);
+                deleteBtn.classList.add('btn-li')
+                buttons.appendChild(deleteBtn);
 
 
-                document.getElementById('task-list').appendChild(li);
+
+                document.getElementById('task-list').appendChild(p);
                 document.getElementById('input-box') = '';
             })
     </script>
