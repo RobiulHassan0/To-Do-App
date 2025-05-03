@@ -69,6 +69,9 @@
         }
         #task-list{
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         .task-container{
             background: #e5e4e4;
@@ -81,7 +84,7 @@
         .task-p{
             flex-grow: 1;
         }
-        .task-btn{
+        .edit-btn, .remove-btn{
             padding: 8px 15px;
             outline: none;
             border: 1px solid salmon;
@@ -104,37 +107,62 @@
     </section>
 
     <script>
-        document.getElementById('btn-main')
-            .addEventListener('click', function(){
-                const input = document.getElementById('input-box').value.trim();
+        const btnMain = document.getElementById('btn-main');
+        const input = document.getElementById('input-box');
+        const taskMainDiv = document.getElementById('task-list');
 
-                // Create Task Div 
-                const taskDiv = document.createElement('div');
-                taskDiv.classList.add('task-container');
+        let editingTaskP = null;
 
-                // Create Task Paragraph
-                const taskP = document.createElement('p');
-                taskP.classList.add('task-p');
-                taskP.innerText = input;
-                taskDiv.appendChild(taskP)
+        btnMain.addEventListener('click', function(){
+            const inputBox = input.value.trim();
+            
+            if(!inputBox) return;  
 
-                // Create Edit Button
-                const editBtn = document.createElement('button');
-                editBtn.innerText = 'Edit';
-                editBtn.classList.add('task-btn')
-                taskDiv.appendChild(editBtn)
+            if(editingTaskP){
+                editingTaskP.innerText = inputBox;
+                editingTaskP = null;
+                btnMain.innerText = 'Add';
+                input.value = '';
+                return;
+            }
 
+            // Create Task Div 
+            const taskDiv = document.createElement('div');
+            taskDiv.classList.add('task-container');
 
-                const deleteBtn = document.createElement('button');
-                deleteBtn.innerText = 'Remove';
-                deleteBtn.classList.add('task-btn')
-                taskDiv.appendChild(deleteBtn);
+            // Create Task Paragraph
+            const taskP = document.createElement('p');
+            taskP.classList.add('task-p');
+            taskP.innerText = inputBox;
+            taskDiv.appendChild(taskP)
 
-                if(!input) return;
-                
-                document.getElementById('task-list').appendChild(taskDiv);
-                document.getElementById('input-box').value = '';
+            // Create Edit Button
+            const editBtn = document.createElement('button');
+            editBtn.innerText = 'Edit';
+            editBtn.classList.add('edit-btn')
+            taskDiv.appendChild(editBtn)
+
+            editBtn.addEventListener('click', function(){
+                input.value = taskP.innerText;
+                btnMain.innerText = 'Update';
+                editingTaskP = taskP;
             })
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerText = 'Remove';
+            deleteBtn.classList.add('remove-btn')
+            taskDiv.appendChild(deleteBtn);
+
+            deleteBtn.addEventListener('click', function(){
+                taskMainDiv.removeChild(taskDiv)
+            })
+
+            taskMainDiv.appendChild(taskDiv);
+            input.value = '';
+            
+        });
+
+            
     </script>
 </body>
 </html>
