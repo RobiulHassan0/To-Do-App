@@ -5,99 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO DO APP</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        }
-        body {
-            background: linear-gradient(135deg, #6EC3F4, #A288E3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        section{
-            max-width: 600px;
-            width: 100%;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 50px;
-        }
-        .container{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            width: 100%;
-            overflow: hidden;
-        }
-        .user-input{
-            width: 100%;
-            display: flex;
-            align-items: center;
-            background: #e5e4e4;
-            border-radius: 50px;
-        }
-        .user-input input{
-            flex: 1;
-            border: 0;
-            outline: 0;
-            font-size: 1rem;
-            font-weight: 100;
-            padding-left: 1.5rem;
-            background: transparent;
-        }
-        .addTaskButton{
-            background: #fe4848;
-            color: white;
-            padding: 13px 35px;
-            font-size: 18px;
-            cursor: pointer;
-            border: 0;
-            outline: none;
-            border-radius: 50px;
-        }
-        h1{
-            text-align: left;
-            font-size: 40px;
-            font-weight: 900;
-            width: 100%;
-        }
-        #task-list{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .task-container{
-            background: #e5e4e4;
-            border-radius: 50px;
-            padding: 7px 10px 7px 1.5rem;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .task-p{
-            flex-grow: 1;
-        }
-        .edit-btn, .remove-btn{
-            padding: 8px 15px;
-            outline: none;
-            border: 1px solid salmon;
-            border-radius: 50px;
-        }
-    </style>
 </head>
 <body>
     <section>
         <div class="container">
             <h1>TO DO LIST</h1>
             <div class="user-input">
-                <input id="input-box" type="text" placeholder="Add your Task">
+                <input id="input-box" autocomplete="off" type="text" placeholder="Add your Task">
                 <button id="btn-main" type="button" class="addTaskButton">Add</button>
             </div>
             <div id="task-list" class="tasks">
